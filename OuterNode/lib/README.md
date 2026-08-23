@@ -1,0 +1,1 @@
+Contains all the configurations and all you need to run/ operate the OuterNode
