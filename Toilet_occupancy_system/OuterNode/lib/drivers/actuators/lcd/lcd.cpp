@@ -29,6 +29,6 @@ void LcdDisplay::print(const String& msg) {
     lcd.setCursor(0, 0);
     lcd.print(msg.c_str());
 
-    lcd.setCursor(10, 1);
+    lcd.setCursor(8, 1);
     lcd.print(MAKER);
 }

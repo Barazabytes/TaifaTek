@@ -13,4 +13,4 @@
 
 #define  SDA_PIN  21
 #define  CLK_PIN  22
-#define  MAKER    "Baraza"
+#define  MAKER    "TaifaTek"
