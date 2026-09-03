@@ -20,6 +20,7 @@ void TTmotorStop() {
     ledcWrite(PWM_CHANNEL, 0); 
 
     Serial.println("Motor has been stopped");
+    delay(100);
 }
 
 

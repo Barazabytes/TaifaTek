@@ -36,9 +36,7 @@ bool ESPNow_Init() {
 
     // Register callbacks
     esp_now_register_send_cb(OnDataSent);
-
     esp_now_register_recv_cb(OnDataRecv);
-
     Serial.println("ESP-NOW initialized successfully");
 
     return true;
@@ -76,7 +74,7 @@ bool ESPNow_AddPeer() {
 
 bool ESPNow_Send(const EspNowData &data) {
     esp_err_t result =
-        esp_now_send(PEER_ADDRESS,reinterpret_cast<const uint8_t *>(&data), sizeof(data));
+        esp_now_send(PEER_ADDRESS, reinterpret_cast<const uint8_t *>(&data), sizeof(data));
 
     if (result == ESP_OK)
         return true;
