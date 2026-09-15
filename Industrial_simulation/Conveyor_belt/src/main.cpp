@@ -1,10 +1,12 @@
 #include "actuators/TTmotor/TTmotor.h"
 #include "esp_now/Esp_now.h"
-#include "sensors/IR/IR.h"
+#include "range/range.h"
 #include <Arduino.h>
 
 EspNowData received_data;
 EspNowData sent_data;
+
+// bool was
 
 void setup() {
   Serial.begin(115200);
@@ -22,11 +24,11 @@ void setup() {
             delay(1000);
     }
 
-// Initialization of IR and TT motor.
+// Initialization of Range and TT motor.
     TTmotorInit();
-    IR_init();
+    range_service_init();
 
-    delay(3000);
+    delay(2000);
 
 }
 
@@ -40,22 +42,26 @@ void loop() {
 
         Serial.print("Value: ");
         Serial.println(received_data.text);
-    }
-
-    if(IRObjectDetected() == LOW) {
-        TTmotorStop();
-        sent_data.text = "FILL";
-        ESPNow_Send(sent_data);
-        sent_data.text = "";
-        delay(3500);
+    } 
+    if(is_object_detected() == true) {
+        if(received_data.text == "FULL") {
+            received_data.text = "";
+            TTmotorMove();
+            delay(1000); // Waiting the glass to pass the US sensor.
+        } else {
+            TTmotorStop();
+            sent_data.text = "FILL";
+            ESPNow_Send(sent_data);
+            sent_data.text = "";
+            delay(5000);
+        }
     
-    } else if(IRObjectDetected() == HIGH)
+    } else if(is_object_detected() == false)
         TTmotorMove();
-    else if(received_data.text == "FULL") {
-        received_data.text = "";
-        TTmotorMove();
-    }
 
-  delay(50);
+    print_distance();
+
+
+  delay(200);
 
 }
