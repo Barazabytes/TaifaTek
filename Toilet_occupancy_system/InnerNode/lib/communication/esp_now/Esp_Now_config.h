@@ -1,7 +1,7 @@
 /**
  * @file Esp_now_config.h
  * @author Said Baraza (barazars45@gmail.com)
- * @brief The esp_now protocol configurations
+ * @brief The esp_now protocol configuration file
  * @version 0.1
  * @date 2026-08-23
  * 
@@ -9,8 +9,7 @@
  * 
  */
 
-
 #pragma once
 #include <stdint.h>
 
-const uint8_t PEER_ADDRESS[] = {0xC8, 0xF0, 0x9E, 0xF7, 0x5F, 0x28};
+const uint8_t PEER_ADDRESS[] = {0xEC, 0xE3, 0x34, 0x99, 0x91, 0x0C};

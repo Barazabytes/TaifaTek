@@ -1,0 +1,12 @@
+#pragma once
+
+typedef enum {
+    ESP_NOW_EVENT_NONE,
+    ESP_NOW_EVENT_NOTIFICATION_SENT,
+    ESP_NOW_EVENT_NOTIFICATION_NOT_SENT,
+    ESP_NOW_EVENT_USER_CONFIRMED,
+    ESP_NOW_EVENT_USER_NOT_CONFIRMED,
+    ESP_NOW_EVENT_NOTIFICATION_AVAILABLE
+}esp_now_events_t;
+
+esp_now_events_t esp_now_event_handler();

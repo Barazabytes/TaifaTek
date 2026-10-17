@@ -1,40 +1,26 @@
 /**
  * @file ultrasonic.h
- * @author Said Baraza (barazars45@gmail.com)
- * @brief The US header file
+ * @author Said Baraza (instagram: @baraza_rs)
+ * @brief Ultrasonic sensor driver interface.
  * @version 0.1
- * @date 2026-08-23
+ * @date 2026-09-05
  * 
  * @copyright Copyright (c) 2026
  * 
  */
 
 #pragma once
-
 #include <stdint.h>
 
+
 class Ultrasonic {
-
 private:
-    uint8_t trigger_pin;
-    uint8_t echo_pin;
-
-    bool object_present;
-
-    uint8_t detection_count;
-    uint8_t release_count;
+    uint8_t  TRIG_PIN;
+    uint8_t  ECHO_PIN;
+    float    DISTANCE;
 
 public:
-    Ultrasonic();
-
-    void UltrasonicInit();
-
-    int getDistance();
-
-    bool triggered(
-        uint16_t threshold_cm,
-        uint16_t release_margin_cm = 10
-    );
-
-    bool isObjectPresent() const;
+    Ultrasonic        (uint8_t trig, uint8_t echo);
+    void  init        ();
+    float get_distance();
 };
