@@ -16,11 +16,12 @@
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-void LcdDisplay::begin() {
+void LcdDisplay::init() {
     Wire.begin(SDA_PIN, CLK_PIN);
 
     lcd.init();                  // Initialize the LCD
     lcd.backlight();             // Turn on backlight
+    lcd.clear();
 }
 
 

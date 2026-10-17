@@ -1,27 +1,36 @@
-/**
- * @file main.cpp
- * @author Said Baraza (barazars45@gmail.com)
- * @brief The main file from where the system execution begins
- * @version 0.1
- * @date 2026-08-23
- * 
- * @copyright Copyright (c) 2026
- * 
- */
-
-
 #include <Arduino.h>
-#include "application.h"
+#include "detection/detection.h"
+#include "display/display.h"
+#include "sound/sound.h"
+#include "visual/visual.h"
+#include "communnication/communication.h"
+#include "system_events/esp_now_events/esp_now_events.h"
+#include "system_events/us_events/us_sensor_events.h"
+#include "system_controller.h"
 
-Application App;
 
 void setup() {
     Serial.begin(115200);
 
-    App.setup();
+    communication_service_init ();
+    detection_service_init     ();
+    display_service_init       ();
+    sound_services_init        ();
+    visual_services_init       ();
 }
+
+us_sensor_events_t sensor_event;
+esp_now_events_t   esp_event;
+
 
 void loop() {
-    App.run();
-}
 
+    sensor_event = us_sensor_event_handler  ();
+    esp_event    = esp_now_event_handler    ();
+
+    system_states_controller(esp_event, sensor_event);
+
+    update_system_outputs();
+    
+    delay(100);
+}

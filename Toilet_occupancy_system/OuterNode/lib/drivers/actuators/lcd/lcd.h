@@ -21,7 +21,7 @@ private:
     uint8_t clk_pin;
 
 public:
-    void begin();
+    void init();
     void print(const String& text);
 
 };
